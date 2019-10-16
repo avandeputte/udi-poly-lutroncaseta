@@ -257,6 +257,7 @@ class LutronCasetaController(polyinterface.Controller):
                 LOGGER.error("Unknown Node Type: {}".format(device))
                 continue
 
+                
             self.addNode(
                 NodeType(
                     self,
