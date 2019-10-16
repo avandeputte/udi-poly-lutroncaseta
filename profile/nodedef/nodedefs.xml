@@ -35,6 +35,24 @@
             </accepts>
         </cmds>
     </nodeDef>
+     <!-- walldimmer -->
+    <nodeDef id="walldimmer" nls="dimmernode">
+        <editors />
+        <sts>
+            <st id="ST" editor="OnOff" />
+            <st id="OL" editor="dimmer_status" />
+        </sts>
+        <cmds>
+            <sends />
+	          <accepts>
+              <cmd id="OL">
+                <p id="OL" editor="dimmer_status" init="OL" />
+              </cmd>
+              <cmd id="DON" />
+	            <cmd id="DOF" />
+            </accepts>
+        </cmds>
+    </nodeDef>
   <!-- scene -->
     <nodeDef id="scene" nls="scenenode">
       <editors />
