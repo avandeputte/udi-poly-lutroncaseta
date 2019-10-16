@@ -100,3 +100,61 @@ class SerenaHoneycombShade(BaseNode):
         'DOF': setClose,
         'OL': setOpenLevel,
     }
+
+    class WallDimmer(BaseNode):
+    def __init__(self,
+                 controller,
+                 primary,
+                 address,
+                 name,
+                 sb,
+                 type,
+                 zone,
+                 current_state):
+        super().__init__(controller, primary, address, name, sb)
+        self.sb = sb
+        self.name = name
+        self.address = address
+        self.type = type
+        self.zone = zone
+        self.current_state = current_state
+
+    def setOn(self, command):
+        LOGGER.info("setOn: command {}".format(command))
+        address = command['address'].replace('device', '', 1)
+        self.send_command(address, 100)
+        self.setDriver('ST', 0)
+        self.setDriver('OL', 100)
+
+    def setOff(self, command):
+        LOGGER.info("setOff: command {}".format(command))
+        address = command['address'].replace('device', '', 1)
+        self.send_command(address, 0)
+        self.setDriver('ST', 100)
+        self.setDriver('OL', 0)
+
+    def setOnLevel(self, command):
+        LOGGER.info("setOnLevel: command {}".format(command))
+        address = command['address'].replace('device', '', 1)
+        if command.get('value'):
+            ol = int(command['value'])
+        else:
+            ol = int(command.get('query', {}).get('OL.uom51'))
+        self.send_command(address, ol)
+        if ol > 0:
+            self.setDriver('ST', 0)
+        else:
+            self.setDriver('ST', 100)
+        self.setDriver('OL', ol)
+
+    drivers = [
+        {'driver': 'ST', 'value': 0, 'uom': 79},
+        {'driver': 'OL', 'value': 0, 'uom': 51}
+    ]
+    id = 'walldimmer'
+
+    commands = {
+        'DON': setOn,
+        'DOF': setOff,
+        'OL': setOnLevel,
+    }
