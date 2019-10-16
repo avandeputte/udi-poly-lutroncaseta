@@ -19,5 +19,17 @@ ST-GV0-NAME = Shade Status
 GV0-serenashade-NAME = Shade Status
 ST-GV0-serenashade-NAME = Shade Status
 
+# walldimmer
+ND-walldimmer-NAME = Wall Dimmer
+ST-walldimmer-ST-NAME = Wall Dimmer Status
+CMD-DON-NAME = On
+CMD-DOF-NAME = Off
+CMD-OL-NAME = On Level
+ST-waldimmer-LEVEL-NAME = On Level
+CMD-walldimmer-OL-NAME = Set On Level
+ST-GV0-NAME = Wall Dimmer Status
+GV0-walldimmer-NAME = Wall Dimmer Status
+ST-GV0-walldimmer-NAME = Wall Dimmer Status
+
 # scene
 CMD-DON-NAME = Activate
