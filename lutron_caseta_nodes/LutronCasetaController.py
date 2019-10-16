@@ -16,7 +16,7 @@ from cryptography.hazmat.primitives.serialization import load_pem_private_key
 from urllib.parse import urlencode
 from pylutron_caseta.smartbridge import Smartbridge
 
-from lutron_caseta_nodes.LutronCasetaNodes import SerenaHoneycombShade, Scene
+from lutron_caseta_nodes.LutronCasetaNodes import SerenaHoneycombShade, WallDimmer, Scene
 
 
 LOGGER = polyinterface.LOGGER
@@ -251,6 +251,8 @@ class LutronCasetaController(polyinterface.Controller):
             NodeType = None
             if device.get('type') == "SerenaHoneycombShade":
                 NodeType = SerenaHoneycombShade
+            elif device.get('type') == "WallDimmer":
+                NodeType = WallDimmer
             if not NodeType:
                 LOGGER.error("Unknown Node Type: {}".format(device))
                 continue
